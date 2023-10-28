@@ -1,0 +1,9 @@
+﻿services:
+  legend-music-database:
+    container_name: legend-music-database
+    image: postgres:14
+    ports:
+      - "15432:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
