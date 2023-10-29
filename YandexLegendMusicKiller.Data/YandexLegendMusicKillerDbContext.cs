@@ -4,7 +4,7 @@ using YandexLegendMusicKiller.Data.Entities;
 
 namespace YandexLegendMusicKiller.Data;
 
-public class YandexLegendMusicKillerDbContext : DbContext
+public sealed class YandexLegendMusicKillerDbContext : DbContext
 {
     #region DbSets
 
@@ -15,6 +15,15 @@ public class YandexLegendMusicKillerDbContext : DbContext
     public DbSet<Song> Songs { get; set; } = null!;
 
     #endregion
+
+    public YandexLegendMusicKillerDbContext()
+    {
+    }
+
+    public YandexLegendMusicKillerDbContext(DbContextOptions<YandexLegendMusicKillerDbContext> options)
+        : base(options)
+    {
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

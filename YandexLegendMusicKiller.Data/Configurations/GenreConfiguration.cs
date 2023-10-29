@@ -11,6 +11,7 @@ internal sealed class GenreConfiguration : BaseEntityConfiguration<Genre>
     {
         builder.ToTable(Tables.Genres);
 
+        builder.HasKey(e => e.Name).HasName($"{Tables.Genres}_pkey");
         builder.Property(e => e.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
     }
 }
