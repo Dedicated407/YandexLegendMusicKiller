@@ -5,7 +5,18 @@ namespace YandexLegendMusicKiller.Data.Entities;
 /// <summary>
 /// Сущность - песня
 /// </summary>
-/// <param name="Id">Уникальный идентификатор</param>
-/// <param name="Name">Название песни</param>
-/// <param name="GenreId">Жанр</param>
-public record Song(Guid Id, string Name, string GenreId) : BaseEntity(Id);
+public class Song : BaseGuidEntity
+{
+    public string Name { get; set; } = null!;
+
+    public Guid AlbumId { get; set; }
+    public Album Album { get; set; } = null!;
+
+    public string GenreId { get; set; } = null!;
+    public Genre Genre { get; set; } = null!;
+
+    /// <summary>
+    /// Навигационное свойство
+    /// </summary>
+    public ICollection<MusicCollection> MusicCollections { get; } = new List<MusicCollection>();
+}

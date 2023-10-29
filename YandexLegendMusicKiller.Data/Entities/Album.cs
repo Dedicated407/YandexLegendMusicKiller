@@ -1,9 +1,14 @@
-﻿namespace YandexLegendMusicKiller.Data.Entities;
+﻿using YandexLegendMusicKiller.Data.Entities.Common;
+
+namespace YandexLegendMusicKiller.Data.Entities;
 
 /// <summary>
 /// Сущность - Альбом
 /// </summary>
-/// <param name="Id">Уникальный идентификатор</param>
-/// <param name="Name">Наименование альбома</param>
-/// <param name="Songs">Коллекция песен</param>
-public record Album(Guid Id, string Name, ICollection<Song> Songs);
+public class Album : BaseGuidEntity
+{
+    public string Name { get; set; } = null!;
+
+    public Guid AuthorId { get; set; }
+    public Author Author { get; set; } = null!;
+}

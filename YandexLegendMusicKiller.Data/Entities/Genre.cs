@@ -1,7 +1,16 @@
-﻿namespace YandexLegendMusicKiller.Data.Entities;
+﻿using YandexLegendMusicKiller.Data.Entities.Common;
+
+namespace YandexLegendMusicKiller.Data.Entities;
 
 /// <summary>
 /// Сущность - жанр
 /// </summary>
-/// <param name="Name">Наименование</param>
-public record Genre(string Name);
+public class Genre : BaseEntity
+{
+    public string Name { get; set; } = null!;
+
+    /// <summary>
+    /// Навигационное свойство
+    /// </summary>
+    public ICollection<Song> Songs = new List<Song>();
+};

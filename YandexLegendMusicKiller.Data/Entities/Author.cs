@@ -1,9 +1,13 @@
-﻿namespace YandexLegendMusicKiller.Data.Entities;
+﻿using YandexLegendMusicKiller.Data.Entities.Common;
+
+namespace YandexLegendMusicKiller.Data.Entities;
 
 /// <summary>
 /// Сущность - Артист
 /// </summary>
-/// <param name="Id">Уникальный идентификатор</param>
-/// <param name="NickName">Псевдоним</param>
-/// <param name="FullName">Полное ФИО</param>
-public record Author(Guid Id, string NickName, string? FullName);
+public class Author : BaseGuidEntity
+{
+    public string NickName { get; set; } = null!;
+
+    public string? FullName { get; set; }
+}
