@@ -1,13 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using YandexLegendMusicKiller.Data.Configurations.Common;
 using YandexLegendMusicKiller.Data.Entities;
 
 namespace YandexLegendMusicKiller.Data.Configurations;
 
-public class MusicCollectionConfiguration : IEntityTypeConfiguration<MusicCollection>
+internal sealed class MusicCollectionConfiguration : BaseGuidEntityConfiguration<MusicCollection>
 {
-    public void Configure(EntityTypeBuilder<MusicCollection> builder)
+    protected override void ConfigureProperties(EntityTypeBuilder<MusicCollection> builder)
     {
-        throw new NotImplementedException();
+        base.ConfigureProperties(builder);
+
+        builder.ToTable(Tables.MusicCollections);
+
+        builder.Property(e => e.Name).HasColumnName("name").HasMaxLength(80).IsRequired();
     }
 }

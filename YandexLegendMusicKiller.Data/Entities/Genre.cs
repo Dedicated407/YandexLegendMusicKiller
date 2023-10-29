@@ -12,5 +12,5 @@ public class Genre : BaseEntity
     /// <summary>
     /// Навигационное свойство
     /// </summary>
-    public ICollection<Song> Songs = new List<Song>();
+    public ICollection<Song> Songs { get; } = new List<Song>();
 };

@@ -1,13 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using YandexLegendMusicKiller.Data.Configurations.Common;
 using YandexLegendMusicKiller.Data.Entities;
 
 namespace YandexLegendMusicKiller.Data.Configurations;
 
-public class GenreConfiguration : IEntityTypeConfiguration<Genre>
+internal sealed class GenreConfiguration : BaseEntityConfiguration<Genre>
 {
-    public void Configure(EntityTypeBuilder<Genre> builder)
+    protected override void ConfigureProperties(EntityTypeBuilder<Genre> builder)
     {
-        throw new NotImplementedException();
+        builder.ToTable(Tables.Genres);
+
+        builder.Property(e => e.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
     }
 }
