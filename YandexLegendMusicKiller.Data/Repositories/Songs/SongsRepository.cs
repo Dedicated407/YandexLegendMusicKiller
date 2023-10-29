@@ -3,9 +3,9 @@ using YandexLegendMusicKiller.Data.Repositories.Common;
 
 namespace YandexLegendMusicKiller.Data.Repositories.Songs;
 
-public class SongsRepository : GenericRepository<Song>, ISongsRepository
+public sealed class SongsRepository : GenericRepository<Song>, ISongsRepository
 {
-    internal SongsRepository(YandexLegendMusicKillerDbContext dbContext) : base(dbContext)
+    public SongsRepository(YandexLegendMusicKillerDbContext dbContext) : base(dbContext)
     {
     }
 }
