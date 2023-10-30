@@ -6,27 +6,36 @@ namespace YandexLegendMusicKiller.Data.Repositories.Common;
 
 public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
 {
-    protected readonly YandexLegendMusicKillerDbContext DbContext;
-    protected readonly DbSet<TEntity> EntitySet;
+    private readonly YandexLegendMusicKillerDbContext _dbContext;
+    private readonly DbSet<TEntity> _entitySet;
 
     internal GenericRepository(YandexLegendMusicKillerDbContext dbContext)
     {
-        DbContext = dbContext;
-        EntitySet = DbContext.Set<TEntity>();
+        _dbContext = dbContext;
+        _entitySet = dbContext.Set<TEntity>();
     }
 
     public async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
-        => await EntitySet.AddAsync(entity, cancellationToken);
+    {
+        await _entitySet.AddAsync(entity, cancellationToken);
+        await _dbContext.SaveChangesAsync(cancellationToken);
+    }
 
-    public void Update(TEntity entity) 
-        => EntitySet.Update(entity);
+    public void Update(TEntity entity)
+    {
+        _entitySet.Update(entity);
+        _dbContext.SaveChanges();
+    }
 
-    public void Remove(TEntity entity) 
-        => EntitySet.Remove(entity);
+    public void Remove(TEntity entity)
+    {
+        _entitySet.Remove(entity);
+        _dbContext.SaveChanges();
+    }
 
     public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
-        => await EntitySet.ToListAsync(cancellationToken);
+        => await _entitySet.ToListAsync(cancellationToken);
 
     public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> expression, CancellationToken cancellationToken = default)
-        => await EntitySet.Where(expression).ToListAsync(cancellationToken);
+        => await _entitySet.Where(expression).ToListAsync(cancellationToken);
 }

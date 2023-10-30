@@ -1,5 +1,6 @@
 ﻿@page
-@* @model IEnumerable<Author> *@
+
+@model AuthorModel
 
 @{
     ViewBag.Title = "Исполнители";
@@ -7,14 +8,7 @@
 
 <h3 class="my-4 text-center">@ViewBag.Title</h3>
 <div class="mx-4">
-    
-    @* <form asp-action="AllUsers" method="get"> *@
-    @*     <p class="text-center"> *@
-    @*         Введите ключевое слово(букву): <input class="form-label" type="text" name="SearchString" /> *@
-    @*         <input type="submit" value="Поиск" /> *@
-    @*     </p> *@
-    @* </form> *@
-    
+
     <table class="table table-bordered table-striped table-hover table-sm">
         <thead class="table-dark">
         <tr class="table-responsive">
@@ -23,17 +17,21 @@
             <th>ФИО</th>
         </tr>
         </thead>
-        @* <tbody> *@
-        @* @foreach (var author in Model) *@
-        @* { *@
-        @*     <tr class="table-responsive text-start"> *@
-        @*         <td>@author.Id</td> *@
-        @*         <td>@author.NickName</td> *@
-        @*         <td>@author.FullName</td> *@
-        @*     </tr> *@
-        @* } *@
-        @* </tbody> *@
+        <tbody>
+        @foreach (var author in Model.Authors)
+        {
+            <tr class="table-responsive text-start">
+                <td>@author.Id</td>
+                <td>@author.NickName</td>
+                <td>@author.FullName</td>
+            </tr>
+        }
+        </tbody>
     </table>
+</div>
+
+<div class="p-4">
+    <a class="btn btn-primary" asp-page="/Authors/Create">Добавить</a>
 </div>
 
 <div class="p-4">

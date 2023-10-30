@@ -29,4 +29,10 @@
       <ProjectReference Include="..\YandexLegendMusicKiller.Data\YandexLegendMusicKiller.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Update="Pages\Authors\AuthorModel.cshtml.cs">
+        <DependentUpon>Index.cshtml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>

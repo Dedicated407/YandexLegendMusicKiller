@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using YandexLegendMusicKiller.Data.Entities;
 using YandexLegendMusicKiller.Data.Repositories.Authors;
+using YandexLegendMusicKiller.UI.Pages.Authors;
 
 namespace YandexLegendMusicKiller.UI.Controllers;
 
@@ -13,27 +14,14 @@ public class AuthorsController : Controller
         _authorsRepository = authorsRepository;
     }
 
-    // [HttpGet]
-    // public async Task<ViewResult> Index() => 
-    //     await Task.Run(() => View(_authorsRepository));
-
     [HttpGet]
-    public async Task<ViewResult> Index(CancellationToken cancellationToken)
-    {
-        var authors = await _authorsRepository.GetAllAsync(cancellationToken);
-        return View(authors);
-    }
-
-    [HttpGet("all")]
-    public async Task<IEnumerable<Author>> GetAll(CancellationToken cancellationToken)
-    {
-        return await _authorsRepository.GetAllAsync(cancellationToken);
-    }
+    public async Task<ViewResult> Index() 
+        => await Task.Run(() => View(new AuthorModel(_authorsRepository)));
 
     [HttpPost]
-    public async Task<IActionResult> Create(Author author)
+    public async Task<IActionResult> Create(Author author, CancellationToken cancellationToken)
     {
-        await _authorsRepository.AddAsync(author);
-        return RedirectToAction("Index", "Authors");
+        await _authorsRepository.AddAsync(author, cancellationToken);
+        return RedirectToAction("Index");
     }
 }
