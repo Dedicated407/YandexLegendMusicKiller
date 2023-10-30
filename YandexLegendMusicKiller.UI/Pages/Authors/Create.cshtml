@@ -1,0 +1,16 @@
+﻿@page
+@model Author
+
+<form method="post">
+    <div>
+        <label asp-for="NickName"></label>
+        <input asp-for="NickName" />
+        <span asp-validation-for="NickName"></span>
+    </div>
+    <div>
+        <label asp-for="FullName"></label>
+        <input asp-for="FullName" />
+        <span asp-validation-for="FullName"></span>
+    </div>
+    <button type="submit">Сохранить</button>
+</form>

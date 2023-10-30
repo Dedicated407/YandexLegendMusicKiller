@@ -24,6 +24,9 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
     public void Remove(TEntity entity) 
         => EntitySet.Remove(entity);
 
+    public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
+        => await EntitySet.ToListAsync(cancellationToken);
+
     public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> expression, CancellationToken cancellationToken = default)
         => await EntitySet.Where(expression).ToListAsync(cancellationToken);
 }

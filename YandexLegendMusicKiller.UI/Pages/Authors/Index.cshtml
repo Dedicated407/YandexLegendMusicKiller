@@ -1,0 +1,41 @@
+﻿@page
+@* @model IEnumerable<Author> *@
+
+@{
+    ViewBag.Title = "Исполнители";
+}
+
+<h3 class="my-4 text-center">@ViewBag.Title</h3>
+<div class="mx-4">
+    
+    @* <form asp-action="AllUsers" method="get"> *@
+    @*     <p class="text-center"> *@
+    @*         Введите ключевое слово(букву): <input class="form-label" type="text" name="SearchString" /> *@
+    @*         <input type="submit" value="Поиск" /> *@
+    @*     </p> *@
+    @* </form> *@
+    
+    <table class="table table-bordered table-striped table-hover table-sm">
+        <thead class="table-dark">
+        <tr class="table-responsive">
+            <th>ID</th>
+            <th>Псевдоним</th>
+            <th>ФИО</th>
+        </tr>
+        </thead>
+        @* <tbody> *@
+        @* @foreach (var author in Model) *@
+        @* { *@
+        @*     <tr class="table-responsive text-start"> *@
+        @*         <td>@author.Id</td> *@
+        @*         <td>@author.NickName</td> *@
+        @*         <td>@author.FullName</td> *@
+        @*     </tr> *@
+        @* } *@
+        @* </tbody> *@
+    </table>
+</div>
+
+<div class="p-4">
+    <a class="btn btn-dark" asp-page="/Index">Вернуться на главную страницу</a>
+</div>
