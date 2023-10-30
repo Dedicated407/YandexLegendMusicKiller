@@ -1,4 +1,5 @@
-﻿using YandexLegendMusicKiller.Data.Entities.Common;
+﻿using System.ComponentModel.DataAnnotations;
+using YandexLegendMusicKiller.Data.Entities.Common;
 
 namespace YandexLegendMusicKiller.Data.Entities;
 
@@ -7,6 +8,7 @@ namespace YandexLegendMusicKiller.Data.Entities;
 /// </summary>
 public class Author : BaseGuidEntity
 {
+    [Required]
     public string NickName { get; set; } = null!;
 
     public string? FullName { get; set; }

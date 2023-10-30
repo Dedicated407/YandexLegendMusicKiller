@@ -33,6 +33,9 @@
       <Compile Update="Pages\Authors\AuthorModel.cshtml.cs">
         <DependentUpon>Index.cshtml</DependentUpon>
       </Compile>
+      <Compile Update="Pages\Authors\CreateAuthorModel.cshtml.cs">
+        <DependentUpon>Create.cshtml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

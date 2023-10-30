@@ -4,19 +4,19 @@ using YandexLegendMusicKiller.Data.Repositories.Authors;
 
 namespace YandexLegendMusicKiller.UI.Pages.Authors;
 
-public class AuthorModel : PageModel
+public class GetAllAuthorsModel : PageModel
 {
-    private readonly IAuthorsRepository _dataRepository;
+    private readonly IAuthorsRepository _authorRepository;
 
     public IEnumerable<Author>? Authors { get; set; }
 
-    public AuthorModel(IAuthorsRepository dataRepository)
+    public GetAllAuthorsModel(IAuthorsRepository authorRepository)
     {
-        _dataRepository = dataRepository;
+        _authorRepository = authorRepository;
     }
 
     public async Task OnGet()
     {
-        Authors = await _dataRepository.GetAllAsync();
+        Authors = await _authorRepository.GetAllAsync();
     }
 }
