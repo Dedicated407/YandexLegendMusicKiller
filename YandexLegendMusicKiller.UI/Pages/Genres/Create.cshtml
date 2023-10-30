@@ -1,0 +1,19 @@
+﻿@page
+@model CreateGenreModel
+
+@{
+    ViewBag.Title = "Добавление жанра";
+}
+
+<div class="d-grid justify-content-center">
+    <form method="post">
+        <div class="mb-4">
+            <label asp-for="Genre.Name" class="form-label">Введите название:</label>
+            <input asp-for="Genre.Name" type="text" class="form-control" placeholder="пример: джаз" maxlength="80"/>
+            <span class="text-danger small" asp-validation-for="Genre.Name"></span>
+        </div>
+        <div class="mb-4">
+            <input class="btn btn-primary w-100" type="submit" value="Добавить" />
+        </div>
+    </form>
+</div>

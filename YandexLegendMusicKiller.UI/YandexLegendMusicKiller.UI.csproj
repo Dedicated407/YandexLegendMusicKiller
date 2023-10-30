@@ -30,11 +30,17 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Pages\Authors\AuthorModel.cshtml.cs">
+      <Compile Update="Pages\Authors\GetAllAuthorsModel.cshtml.cs">
         <DependentUpon>Index.cshtml</DependentUpon>
       </Compile>
       <Compile Update="Pages\Authors\CreateAuthorModel.cshtml.cs">
         <DependentUpon>Create.cshtml</DependentUpon>
+      </Compile>
+      <Compile Update="Pages\Genres\CreateGenreModel.cs">
+        <DependentUpon>Create.cshtml</DependentUpon>
+      </Compile>
+      <Compile Update="Pages\Genres\GetAllGenresModel.cs">
+        <DependentUpon>Index.cshtml</DependentUpon>
       </Compile>
     </ItemGroup>
 
