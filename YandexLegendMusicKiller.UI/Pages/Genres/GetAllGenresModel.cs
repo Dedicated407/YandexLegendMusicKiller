@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using YandexLegendMusicKiller.Data.Entities;
 using YandexLegendMusicKiller.Data.Repositories.Genres;
 
@@ -10,6 +11,9 @@ public class GetAllGenresModel : PageModel
 
     public IEnumerable<Genre>? Genres { get; set; }
 
+    [BindProperty(SupportsGet = true)]
+    public string? SearchString { get; set; }
+
     public GetAllGenresModel(IGenresRepository genreRepository)
     {
         _genreRepository = genreRepository;
@@ -17,6 +21,13 @@ public class GetAllGenresModel : PageModel
 
     public async Task OnGet()
     {
-        Genres = await _genreRepository.GetAllAsync();
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            Genres = await _genreRepository.GetAllAsync(x => x.Name.Contains(SearchString));
+        }
+        else
+        {
+            Genres = await _genreRepository.GetAllAsync();
+        }
     }
 }
