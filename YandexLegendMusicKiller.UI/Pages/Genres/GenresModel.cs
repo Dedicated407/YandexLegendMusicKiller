@@ -19,21 +19,21 @@ public class GenresModel : PageModel
         _genreRepository = genreRepository;
     }
 
-    public async Task OnGet()
+    public async Task OnGet(CancellationToken ct)
     {
         if (!string.IsNullOrEmpty(SearchString))
         {
-            Genres = await _genreRepository.GetAllAsync(x => x.Name.Contains(SearchString));
+            Genres = await _genreRepository.GetAllAsync(x => x.Name.Contains(SearchString), ct);
         }
         else
         {
-            Genres = await _genreRepository.GetAllAsync();
+            Genres = await _genreRepository.GetAllAsync(ct);
         }
     }
 
-    public async Task<IActionResult> OnPostDeleteAsync(string name)
+    public async Task<IActionResult> OnPostDeleteAsync(string name, CancellationToken ct)
     {
-        var genre = await _genreRepository.GetAsync(x => x.Name == name);
+        var genre = await _genreRepository.GetAsync(x => x.Name == name, ct);
         if (genre != null)
         {
             _genreRepository.Remove(genre);

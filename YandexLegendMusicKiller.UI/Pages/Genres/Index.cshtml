@@ -5,15 +5,19 @@
     ViewBag.Title = "Жанры";
 }
 
-<h3 class="my-4 text-center">@ViewBag.Title</h3>
-<div class="mx-4">
-
-    <form method="get">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" asp-for="SearchString">
-            <button type="submit" class="btn btn-primary">Поиск</button>
+<h1 class="my-4 fw-bold text-center">@ViewBag.Title</h1>
+<div>
+    <div class="row justify-content-center my-3">
+        <form method="get" class="col-8">
+            <div class="input-group">
+                <input type="text" class="form-control" asp-for="SearchString">
+                <button type="submit" class="btn btn-primary">Поиск</button>
+            </div>
+        </form>
+        <div class="col-2">
+            <a class="btn btn-primary" asp-page="/Genres/Create">Добавить</a>
         </div>
-    </form>
+    </div>
     <table class="table table-bordered table-striped table-sm">
         <thead class="table-primary text-center">
         <tr>
@@ -22,11 +26,11 @@
         </tr>
         </thead>
         <tbody>
-        @foreach (var genre in Model.Genres)
+        @foreach (var genre in Model.Genres!)
         {
             <tr class="text-start">
                 <td class="p-3 col-11">@genre.Name</td>
-                <td class="text-end p-2 col-1">
+                <td class="text-center p-2 col-1">
                     <form method="post" onsubmit="return confirm('Вы уверены?')">
                         <button asp-page-handler="delete" asp-route-name="@genre.Name" class="btn btn-danger" type="submit">Удалить</button>
                     </form>
@@ -35,8 +39,4 @@
         }
         </tbody>
     </table>
-</div>
-
-<div class="p-1">
-    <a class="btn btn-primary" asp-page="/Genres/Create">Добавить</a>
 </div>

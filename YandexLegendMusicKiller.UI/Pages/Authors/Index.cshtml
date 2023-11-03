@@ -1,38 +1,48 @@
 ﻿@page
-@model GetAllAuthorsModel
+@model AuthorsModel
 
 @{
     ViewBag.Title = "Исполнители";
 }
 
-<h3 class="my-4 text-center">@ViewBag.Title</h3>
-<div class="mx-4">
-
-    <table class="table table-bordered table-striped table-hover table-sm">
-        <thead class="table-dark">
-        <tr class="table-responsive">
-            <th>ID</th>
+<h1 class="my-4 fw-bold text-center">@ViewBag.Title</h1>
+<div>
+    <div class="row justify-content-center my-3">
+        <form method="get" class="col-8">
+            <div class="input-group">
+                <input type="text" class="form-control" asp-for="SearchString">
+                <button type="submit" class="btn btn-primary">Поиск</button>
+            </div>
+        </form>
+        <div class="col-2">
+            <a class="btn btn-primary" asp-page="/Authors/Create">Добавить</a>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped table-sm">
+        <thead class="table-primary text-center">
+        <tr>
             <th>Псевдоним</th>
             <th>ФИО</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
-        @foreach (var author in Model.Authors)
+        @foreach (var author in Model.Authors!)
         {
-            <tr class="table-responsive text-start">
-                <td>@author.Id</td>
-                <td>@author.NickName</td>
-                <td>@author.FullName</td>
+            <tr class="text-start">
+                <td class="p-3 col-5">@author.NickName</td>
+                <td class="p-3 col-5">@author.FullName</td>
+                <td class="text-center p-2 col-1">
+                    <a asp-page="/Authors/Update" asp-route-id="@author.Id" class="btn btn-warning">Изменить</a>
+                </td>
+                <td class="text-center p-2 col-1">
+                    <form method="post" onsubmit="return confirm('Вы уверены?')">
+                        <button asp-page-handler="delete" asp-route-id="@author.Id" class="btn btn-danger" type="submit">Удалить</button>
+                    </form>
+                </td>
             </tr>
         }
         </tbody>
     </table>
-</div>
-
-<div class="p-4">
-    <a class="btn btn-primary" asp-page="/Authors/Create">Добавить</a>
-</div>
-
-<div class="p-4">
-    <a class="btn btn-dark" asp-page="/Index">Вернуться на главную страницу</a>
 </div>
