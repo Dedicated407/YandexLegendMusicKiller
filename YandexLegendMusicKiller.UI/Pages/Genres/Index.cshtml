@@ -1,5 +1,5 @@
 ﻿@page
-@model GetAllGenresModel
+@model GenresModel
 
 @{
     ViewBag.Title = "Жанры";
@@ -14,27 +14,29 @@
             <button type="submit" class="btn btn-primary">Поиск</button>
         </div>
     </form>
-    <table class="table table-bordered table-striped table-hover table-sm">
-        <thead class="table-dark">
-        <tr class="table-responsive">
+    <table class="table table-bordered table-striped table-sm">
+        <thead class="table-primary text-center">
+        <tr>
             <th>Наименование</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
-        @foreach (var author in Model.Genres)
+        @foreach (var genre in Model.Genres)
         {
-            <tr class="table-responsive text-start">
-                <td>@author.Name</td>
+            <tr class="text-start">
+                <td class="p-3 col-11">@genre.Name</td>
+                <td class="text-end p-2 col-1">
+                    <form method="post" onsubmit="return confirm('Вы уверены?')">
+                        <button asp-page-handler="delete" asp-route-name="@genre.Name" class="btn btn-danger" type="submit">Удалить</button>
+                    </form>
+                </td>
             </tr>
         }
         </tbody>
     </table>
 </div>
 
-<div class="p-4">
+<div class="p-1">
     <a class="btn btn-primary" asp-page="/Genres/Create">Добавить</a>
-</div>
-
-<div class="p-4">
-    <a class="btn btn-dark" asp-page="/Index">Вернуться на главную страницу</a>
 </div>

@@ -5,16 +5,16 @@ using YandexLegendMusicKiller.Data.Repositories.Genres;
 
 namespace YandexLegendMusicKiller.UI.Pages.Genres;
 
-public class GetAllGenresModel : PageModel
+public class GenresModel : PageModel
 {
     private readonly IGenresRepository _genreRepository;
-
-    public IEnumerable<Genre>? Genres { get; set; }
 
     [BindProperty(SupportsGet = true)]
     public string? SearchString { get; set; }
 
-    public GetAllGenresModel(IGenresRepository genreRepository)
+    public IEnumerable<Genre>? Genres { get; private set; }
+
+    public GenresModel(IGenresRepository genreRepository)
     {
         _genreRepository = genreRepository;
     }
@@ -29,5 +29,16 @@ public class GetAllGenresModel : PageModel
         {
             Genres = await _genreRepository.GetAllAsync();
         }
+    }
+
+    public async Task<IActionResult> OnPostDeleteAsync(string name)
+    {
+        var genre = await _genreRepository.GetAsync(x => x.Name == name);
+        if (genre != null)
+        {
+            _genreRepository.Remove(genre);
+        }
+
+        return RedirectToPage();
     }
 }

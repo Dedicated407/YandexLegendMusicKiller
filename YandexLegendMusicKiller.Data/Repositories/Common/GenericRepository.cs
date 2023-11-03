@@ -33,6 +33,9 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
         _dbContext.SaveChanges();
     }
 
+    public async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> expression, CancellationToken cancellationToken = default)
+        => await _entitySet.FirstOrDefaultAsync(expression, cancellationToken);
+
     public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
         => await _entitySet.ToListAsync(cancellationToken);
 
