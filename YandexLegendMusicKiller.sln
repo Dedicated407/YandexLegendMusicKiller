@@ -4,10 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexLegendMusicKiller.UI"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexLegendMusicKiller.Data", "YandexLegendMusicKiller.Data\YandexLegendMusicKiller.Data.csproj", "{5A67A408-F02F-4C95-AFD4-D9765A524544}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexLegendMusicKiller.Domain", "YandexLegendMusicKiller.Domain\YandexLegendMusicKiller.Domain.csproj", "{2FF9A69C-FE3A-46C3-96CF-10622CEC713D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexLegendMusicKiller.Services", "YandexLegendMusicKiller.Services\YandexLegendMusicKiller.Services.csproj", "{B7DBFE6C-49E9-4D5D-A094-7916BB0842E9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF486063-D4D2-4F55-809B-F838DFE962BC}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
@@ -29,19 +25,9 @@ Global
 		{5A67A408-F02F-4C95-AFD4-D9765A524544}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A67A408-F02F-4C95-AFD4-D9765A524544}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A67A408-F02F-4C95-AFD4-D9765A524544}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2FF9A69C-FE3A-46C3-96CF-10622CEC713D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FF9A69C-FE3A-46C3-96CF-10622CEC713D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FF9A69C-FE3A-46C3-96CF-10622CEC713D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FF9A69C-FE3A-46C3-96CF-10622CEC713D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7DBFE6C-49E9-4D5D-A094-7916BB0842E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7DBFE6C-49E9-4D5D-A094-7916BB0842E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7DBFE6C-49E9-4D5D-A094-7916BB0842E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7DBFE6C-49E9-4D5D-A094-7916BB0842E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5A67A408-F02F-4C95-AFD4-D9765A524544} = {973EDAD6-CC5D-4FE6-B83F-8019C8927832}
-		{2FF9A69C-FE3A-46C3-96CF-10622CEC713D} = {973EDAD6-CC5D-4FE6-B83F-8019C8927832}
-		{B7DBFE6C-49E9-4D5D-A094-7916BB0842E9} = {973EDAD6-CC5D-4FE6-B83F-8019C8927832}
 		{097F5643-1541-4E7F-B65E-CFCAED4BD818} = {973EDAD6-CC5D-4FE6-B83F-8019C8927832}
 	EndGlobalSection
 EndGlobal
