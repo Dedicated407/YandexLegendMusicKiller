@@ -1,18 +1,51 @@
 ﻿@page
+@model MusicCollectionsModel
 
 @{
-    ViewBag.Title = "Сборники композиций";
+    ViewBag.Title = "Сборники";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+<h1 class="my-4 fw-bold text-center">@ViewBag.Title</h1>
 <div>
-    
+    <div class="row justify-content-center my-3">
+        <form method="get" class="col-8">
+            <div class="input-group">
+                <input type="text" class="form-control" asp-for="SearchString">
+                <button type="submit" class="btn btn-primary">Поиск</button>
+            </div>
+        </form>
+        <div class="col-2">
+            <a class="btn btn-primary" asp-page="/MusicCollections/Create">Добавить</a>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped table-sm">
+        <thead class="table-primary text-center">
+        <tr>
+            <th>Название сборника</th>
+            <th>Композиции</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var musicCollection in Model.MusicCollections!)
+        {
+            <tr class="text-start">
+                <td class="p-3 col-2">@musicCollection.Name</td>
+                <td class="p-3 col-9">
+                    <ul class="list-group">
+                        @foreach (var song in musicCollection.Songs)
+                        {
+                            <li class="list-group-item m-1">@song.Name</li>
+                        }
+                    </ul>
+                </td>
+                <td class="text-center p-2 col-1">
+                    <form method="post" onsubmit="return confirm('Вы уверены?')">
+                        <button asp-page-handler="delete" asp-route-id="@musicCollection.Id" class="btn btn-danger" type="submit">Удалить коллекцию</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
 </div>
-</body>
-</html>

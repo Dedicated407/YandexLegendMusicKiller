@@ -56,6 +56,9 @@
       <Compile Update="Pages\Songs\CreateSongModel.cshtml.cs">
         <DependentUpon>Create.cshtml</DependentUpon>
       </Compile>
+      <Compile Update="Pages\MusicCollections\MusicCollectionsModel.cshtml.cs">
+        <DependentUpon>Index.cshtml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>
