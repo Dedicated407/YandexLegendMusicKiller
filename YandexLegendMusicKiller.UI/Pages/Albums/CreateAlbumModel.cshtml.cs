@@ -7,7 +7,7 @@ using YandexLegendMusicKiller.Data.Repositories.Authors;
 
 namespace YandexLegendMusicKiller.UI.Pages.Albums;
 
-public class CreateAlbumModel : PageModel
+internal sealed class CreateAlbumModel : PageModel
 {
     private readonly IAlbumsRepository _albumsRepository;
     private readonly IAuthorsRepository _authorsRepository;

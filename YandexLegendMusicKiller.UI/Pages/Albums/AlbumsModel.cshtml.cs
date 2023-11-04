@@ -5,7 +5,7 @@ using YandexLegendMusicKiller.Data.Repositories.Albums;
 
 namespace YandexLegendMusicKiller.UI.Pages.Albums;
 
-public sealed class AlbumsModel : PageModel
+internal sealed class AlbumsModel : PageModel
 {
     private readonly IAlbumsRepository _albumsRepository;
 
