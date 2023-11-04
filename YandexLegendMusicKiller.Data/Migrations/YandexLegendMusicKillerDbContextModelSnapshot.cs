@@ -34,7 +34,7 @@ namespace YandexLegendMusicKiller.Data.Migrations
 
                     b.HasIndex("SongsId");
 
-                    b.ToTable("MusicCollectionSong");
+                    b.ToTable("MusicCollectionSong", (string)null);
                 });
 
             modelBuilder.Entity("YandexLegendMusicKiller.Data.Entities.Album", b =>

@@ -11,4 +11,9 @@ public class Album : BaseGuidEntity
 
     public Guid AuthorId { get; set; }
     public Author Author { get; set; } = null!;
+
+    /// <summary>
+    /// Навигационное свойство
+    /// </summary>
+    public ICollection<Song> Songs { get; } = new List<Song>();
 }

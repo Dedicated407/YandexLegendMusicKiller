@@ -4,13 +4,17 @@
 @{
   ViewBag.Title = "Добавление альбома";
 }
-
 <div class="d-grid justify-content-center">
     <form method="post">
         <div class="mb-4">
             <label asp-for="Album.Name" class="form-label">Введите название альбома:</label>
-            <input asp-for="Album.Name" type="text" class="form-control" placeholder="пример: Вояджер-1" maxlength="80"/>
+            <input asp-for="Album.Name" type="text" class="form-control" placeholder="пример: Вояджер-1" maxlength="80" required/>
             <span class="text-danger small" asp-validation-for="Album.Name"></span>
+        </div>
+        <div class="mb-4">
+            <select asp-for="AuthorId" asp-items="Model.Authors" required>
+                <option value="">Выберите исполнителя</option>
+            </select>
         </div>
         <div class="mb-4">
             <input class="btn btn-primary w-100" type="submit" value="Добавить" />

@@ -31,16 +31,16 @@ public sealed class AlbumsModel : PageModel
         }
         else
         {
-            Albums = await _albumsRepository.GetAllAsync(ct);
+            Albums = await _albumsRepository.GetAllAlbumsWithAuthorsAsync(ct);
         }
     }
 
     public async Task<IActionResult> OnPostDeleteAsync(Guid id, CancellationToken ct)
     {
-        var author = await _albumsRepository.GetAsync(x => x.Id == id, ct);
-        if (author != null)
+        var album = await _albumsRepository.GetAsync(x => x.Id == id, ct);
+        if (album != null)
         {
-            _albumsRepository.Remove(author);
+            _albumsRepository.Remove(album);
         }
 
         return RedirectToPage();

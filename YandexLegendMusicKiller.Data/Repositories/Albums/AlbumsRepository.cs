@@ -11,14 +11,16 @@ public sealed class AlbumsRepository : GenericRepository<Album>, IAlbumsReposito
     {
     }
 
+    public IQueryable<Album> GetAllAlbumsWithAuthors() =>
+        EntitySet.Include(x => x.Author)
+            .AsQueryable();
+
+    public async Task<IEnumerable<Album>> GetAllAlbumsWithAuthorsAsync(CancellationToken ct = default)
+        => await EntitySet.Include(x => x.Author).ToListAsync(ct);
+
     public async Task<IEnumerable<Album>> GetAllAlbumsWithAuthorsAsync(Expression<Func<Album, bool>> expression, 
         CancellationToken ct = default) 
         => await EntitySet.Include(x => x.Author)
             .Where(expression)
             .ToListAsync(ct);
-
-    public IQueryable<Album> GetAllAlbumsWithAuthors() =>
-        EntitySet
-            .Include(x => x.Author)
-            .AsQueryable();
 }
