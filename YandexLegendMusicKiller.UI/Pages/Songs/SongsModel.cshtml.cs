@@ -24,7 +24,10 @@ internal sealed class SongsModel : PageModel
         if (!string.IsNullOrEmpty(SearchString))
         {
             Songs = await _songsRepository.GetAllSongsWithAlbumsAndGenresAsync(x => 
-                    x.Name.Contains(SearchString),
+                    x.Name.Contains(SearchString) ||
+                    x.Album.Name.Contains(SearchString) ||
+                    x.Album.Author.NickName.Contains(SearchString) ||
+                    x.GenreId.Contains(SearchString),
                 ct);
         }
         else
