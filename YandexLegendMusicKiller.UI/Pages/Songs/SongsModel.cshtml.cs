@@ -32,4 +32,15 @@ internal sealed class SongsModel : PageModel
             Songs = await _songsRepository.GetAllSongsWithAlbumsAndGenresAsync(ct);
         }
     }
+
+    public async Task<IActionResult> OnPostDeleteAsync(Guid id, CancellationToken ct)
+    {
+        var song = await _songsRepository.GetAsync(x => x.Id == id, ct);
+        if (song != null)
+        {
+            _songsRepository.Remove(song);
+        }
+
+        return RedirectToPage();
+    }
 }
