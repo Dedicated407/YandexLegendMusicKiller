@@ -1,0 +1,29 @@
+﻿@page
+@model CreateSongModel
+
+@{
+    ViewBag.Title = "Добавление композиции";
+}
+
+<div class="d-grid justify-content-center">
+    <form method="post">
+        <div class="mb-4">
+            <label asp-for="Song.Name" class="form-label">Введите название композиции:</label>
+            <input asp-for="Song.Name" type="text" class="form-control" placeholder="пример: Вояджер-1" maxlength="80" required/>
+            <span class="text-danger small" asp-validation-for="Song.Name"></span>
+        </div>
+        <div class="mb-4">
+            <select asp-for="AlbumId" asp-items="Model.Albums" required>
+                <option value="">Выберите альбом</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <select asp-for="GenreId" asp-items="Model.Genres" required>
+                <option value="">Выберите жанр</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <input class="btn btn-primary w-100" type="submit" value="Добавить" />
+        </div>
+    </form>
+</div>
