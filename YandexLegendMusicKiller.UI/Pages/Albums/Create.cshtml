@@ -1,0 +1,19 @@
+﻿@page
+@model CreateAlbumModel
+
+@{
+  ViewBag.Title = "Добавление альбома";
+}
+
+<div class="d-grid justify-content-center">
+    <form method="post">
+        <div class="mb-4">
+            <label asp-for="Album.Name" class="form-label">Введите название альбома:</label>
+            <input asp-for="Album.Name" type="text" class="form-control" placeholder="пример: Вояджер-1" maxlength="80"/>
+            <span class="text-danger small" asp-validation-for="Album.Name"></span>
+        </div>
+        <div class="mb-4">
+            <input class="btn btn-primary w-100" type="submit" value="Добавить" />
+        </div>
+    </form>
+</div>

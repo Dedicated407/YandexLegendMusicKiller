@@ -17,9 +17,9 @@ internal sealed class CreateGenreModel : PageModel
         _genresRepository = genresRepository;
     }
 
-    public async Task<IActionResult> OnPostAsync(CancellationToken cancellationToken)
+    public async Task<IActionResult> OnPostAsync(CancellationToken ct)
     {
-        await _genresRepository.AddAsync(Genre, cancellationToken);
+        await _genresRepository.AddAsync(Genre, ct);
         return RedirectToPage("Index");
     }
 }

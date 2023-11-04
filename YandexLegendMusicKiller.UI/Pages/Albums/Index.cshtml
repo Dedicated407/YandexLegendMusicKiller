@@ -1,18 +1,48 @@
 ﻿@page
+@model AlbumsModel
 
 @{
     ViewBag.Title = "Альбомы";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+<h1 class="my-4 fw-bold text-center">@ViewBag.Title</h1>
 <div>
-    
+    <div class="row justify-content-center my-3">
+        <form method="get" class="col-8">
+            <div class="input-group">
+                <input type="text" class="form-control" asp-for="SearchString">
+                <button type="submit" class="btn btn-primary">Поиск</button>
+            </div>
+        </form>
+        <div class="col-2">
+            <a class="btn btn-primary" asp-page="/Albums/Create">Добавить</a>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped table-sm">
+        <thead class="table-primary text-center">
+        <tr>
+            <th>Название альбома</th>
+            <th>Исполнитель</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var album in Model.Albums!)
+        {
+            <tr class="text-start">
+                <td class="p-3 col-5">@album.Name</td>
+                <td class="p-3 col-5">@album.Author.NickName</td>
+                <td class="text-center p-2 col-1">
+                    <a asp-page="/Albums/Update" asp-route-id="@album.Id" class="btn btn-warning">Изменить</a>
+                </td>
+                <td class="text-center p-2 col-1">
+                    <form method="post" onsubmit="return confirm('Вы уверены?')">
+                        <button asp-page-handler="delete" asp-route-id="@album.Id" class="btn btn-danger" type="submit">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
 </div>
-</body>
-</html>

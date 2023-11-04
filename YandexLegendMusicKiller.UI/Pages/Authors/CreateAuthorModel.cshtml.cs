@@ -17,9 +17,9 @@ internal sealed class CreateAuthorModel : PageModel
         _authorsRepository = authorsRepository;
     }
 
-    public async Task<IActionResult> OnPostAsync(CancellationToken cancellationToken)
+    public async Task<IActionResult> OnPostAsync(CancellationToken ct)
     {
-        await _authorsRepository.AddAsync(Author, cancellationToken);
+        await _authorsRepository.AddAsync(Author, ct);
         return RedirectToPage("Index");
     }
 }
