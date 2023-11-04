@@ -44,6 +44,9 @@
       <Compile Update="Pages\Authors\UpdateAuthorModel.cs">
         <DependentUpon>Update.cshtml</DependentUpon>
       </Compile>
+      <Compile Update="Pages\Albums\AlbumsModel.cshtml.cs">
+        <DependentUpon>Index.cshtml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

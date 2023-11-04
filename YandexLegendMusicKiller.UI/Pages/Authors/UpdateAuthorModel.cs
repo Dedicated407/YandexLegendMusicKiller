@@ -5,7 +5,7 @@ using YandexLegendMusicKiller.Data.Repositories.Authors;
 
 namespace YandexLegendMusicKiller.UI.Pages.Authors;
 
-public class UpdateAuthorModel : PageModel
+internal sealed class UpdateAuthorModel : PageModel
 {
     private readonly IAuthorsRepository _authorsRepository;
 

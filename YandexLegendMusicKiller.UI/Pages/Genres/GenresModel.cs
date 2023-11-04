@@ -5,7 +5,7 @@ using YandexLegendMusicKiller.Data.Repositories.Genres;
 
 namespace YandexLegendMusicKiller.UI.Pages.Genres;
 
-public class GenresModel : PageModel
+internal sealed class GenresModel : PageModel
 {
     private readonly IGenresRepository _genreRepository;
 

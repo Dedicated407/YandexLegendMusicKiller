@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace YandexLegendMusicKiller.UI.Pages;
 
-public class PrivacyModel : PageModel
+internal sealed class PrivacyModel : PageModel
 {
     private readonly ILogger<PrivacyModel> _logger;
 
