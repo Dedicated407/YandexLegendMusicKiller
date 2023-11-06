@@ -21,8 +21,9 @@
     <table class="table table-bordered table-striped table-sm">
         <thead class="table-primary text-center">
         <tr>
-            <th>Название сборника</th>
+            <th>Наименование сборника</th>
             <th>Композиции</th>
+            <th></th>
             <th></th>
         </tr>
         </thead>
@@ -40,8 +41,11 @@
                     </ul>
                 </td>
                 <td class="text-center p-2 col-1">
+                    <a asp-page="/MusicCollections/UpdateItems" asp-route-id="@musicCollection.Id" class="btn btn-warning">Обновить сборник</a>
+                </td>
+                <td class="text-center p-2 col-1">
                     <form method="post" onsubmit="return confirm('Вы уверены?')">
-                        <button asp-page-handler="delete" asp-route-id="@musicCollection.Id" class="btn btn-danger" type="submit">Удалить коллекцию</button>
+                        <button asp-page-handler="delete" asp-route-id="@musicCollection.Id" class="btn btn-danger" type="submit">Удалить сборник</button>
                     </form>
                 </td>
             </tr>
