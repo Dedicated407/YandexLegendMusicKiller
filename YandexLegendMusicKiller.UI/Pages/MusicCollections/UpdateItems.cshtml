@@ -1,0 +1,49 @@
+﻿@page "{id:Guid}"
+@model UpdateMusicCollectionItemsModel
+
+@{
+    ViewBag.Title = "Изменение сборника";
+}
+
+<div class="justify-content-center">
+    <div class="mb-4">
+        <label asp-for="MusicCollection!.Id" class="form-label">Id сборника:</label>
+        <input name="id" asp-for="MusicCollection!.Id" type="text" class="form-control" readonly/>
+    </div>
+    <div class="mb-4">
+        <label asp-for="MusicCollection!.Name" class="form-label">Наименование сборника:</label>
+        <input name="id" asp-for="MusicCollection!.Name" type="text" class="form-control" readonly/>
+    </div>
+    <form asp-page-handler="edit" method="post" class="mb-4">
+         <div class="mb-4">
+            <select multiple="multiple" asp-for="SongToAddIds" asp-items="Model.Songs" required>
+                <option disabled="disabled" value="">Выберите композиции для добавления:</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <input class="btn btn-success w-100" type="submit" value="Добавить"/>
+        </div>
+    </form>
+    <table class="table table-bordered table-striped table-sm">
+        <thead class="table-primary text-center">
+        <tr>
+            <th>Наименование композиции</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var song in Model.MusicCollection!.Songs)
+        {
+            <tr class="text-start">
+                <td class="p-3 col-2">@song.Name</td>
+                <td class="text-center p-2 col-1">
+                    <form asp-page-handler="delete" method="post">
+                        <input type="hidden" name="songId" value="@song.Id" />
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
