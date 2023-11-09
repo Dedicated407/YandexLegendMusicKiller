@@ -24,9 +24,7 @@ internal sealed class AlbumsModel : PageModel
         if (!string.IsNullOrEmpty(SearchString))
         {
             Albums = await _albumsRepository.GetAllAlbumsWithAuthorsAsync(x => 
-                    x.Name.Contains(SearchString) || 
-                    x.Author.NickName.Contains(SearchString) || 
-                    x.Author.FullName!.Contains(SearchString), 
+                    x.Name.Contains(SearchString), 
                 ct);
         }
         else
