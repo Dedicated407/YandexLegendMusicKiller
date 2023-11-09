@@ -11,6 +11,14 @@ public class MusicCollectionsRepository : GenericRepository<MusicCollection>, IM
     {
     }
 
+    public async Task<MusicCollection?> GetMusicCollectionWithSongsAsync(
+        Expression<Func<MusicCollection, bool>> expression,
+        CancellationToken ct = default)
+        => await EntitySet
+            .Include(x => x.Songs)
+            .Where(expression)
+            .FirstOrDefaultAsync(ct);
+
     public async Task<IEnumerable<MusicCollection>> GetAllMusicCollectionsWithSongsAsync(CancellationToken ct = default)
         => await EntitySet
             .Include(x => x.Songs)

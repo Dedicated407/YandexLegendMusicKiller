@@ -29,7 +29,7 @@ internal sealed class UpdateAuthorModel : PageModel
         return Page();
     }
 
-    public IActionResult OnPostAsync(CancellationToken ct)
+    public IActionResult OnPost()
     {
         _authorsRepository.Update(Author!);
         return RedirectToPage("Index");

@@ -6,6 +6,7 @@ namespace YandexLegendMusicKiller.Data.Repositories.MusicCollections;
 
 public interface IMusicCollectionsRepository : IGenericRepository<MusicCollection>
 {
+    Task<MusicCollection?> GetMusicCollectionWithSongsAsync(Expression<Func<MusicCollection, bool>> expression, CancellationToken ct = default);
     Task<IEnumerable<MusicCollection>> GetAllMusicCollectionsWithSongsAsync(CancellationToken ct = default);
     Task<IEnumerable<MusicCollection>> GetAllMusicCollectionsWithSongsAsync(Expression<Func<MusicCollection, bool>> expression, CancellationToken ct = default);
 }
