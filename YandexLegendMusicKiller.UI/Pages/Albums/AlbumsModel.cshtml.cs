@@ -12,6 +12,9 @@ internal sealed class AlbumsModel : PageModel
     [BindProperty(SupportsGet = true)]
     public string? SearchString { get; set; }
 
+    [BindProperty(SupportsGet = true)]
+    public string? SearchOption { get; set; }
+
     public IEnumerable<Album>? Albums { get; private set; }
 
     public AlbumsModel(IAlbumsRepository albumsRepository)
@@ -23,9 +26,12 @@ internal sealed class AlbumsModel : PageModel
     {
         if (!string.IsNullOrEmpty(SearchString))
         {
-            Albums = await _albumsRepository.GetAllAlbumsWithAuthorsAsync(x => 
-                    x.Name.Contains(SearchString), 
-                ct);
+            SearchString = SearchString!.ToLower();
+            Albums = SearchOption!.ToLower() switch
+            {
+                "author" => await _albumsRepository.GetAllAlbumsWithAuthorsAsync(x => x.Author.NickName.ToLower().Contains(SearchString), ct),
+                _ => await _albumsRepository.GetAllAlbumsWithAuthorsAsync(x => x.Name.ToLower().Contains(SearchString), ct)
+            };
         }
         else
         {

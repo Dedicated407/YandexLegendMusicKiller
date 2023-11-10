@@ -12,6 +12,9 @@ internal sealed class SongsModel : PageModel
     [BindProperty(SupportsGet = true)]
     public string? SearchString { get; set; }
 
+    [BindProperty(SupportsGet = true)]
+    public string? SearchOption { get; set; }
+
     public IEnumerable<Song>? Songs { get; private set; }
 
     public SongsModel(ISongsRepository songsRepository)
@@ -23,9 +26,17 @@ internal sealed class SongsModel : PageModel
     {
         if (!string.IsNullOrEmpty(SearchString))
         {
-            Songs = await _songsRepository.GetAllSongsWithAlbumsAndGenresAsync(x => 
-                    x.Name.Contains(SearchString),
-                ct);
+            SearchString = SearchString!.ToLower();
+            Songs = SearchOption switch
+            {
+                "album" => await _songsRepository.GetAllSongsWithAlbumsAndGenresAsync(
+                    x => x.Album.Name.ToLower().Contains(SearchString), ct),
+                "author" => await _songsRepository.GetAllSongsWithAlbumsAndGenresAsync(
+                    x => x.Album.Author.NickName.ToLower().Contains(SearchString), ct),
+                "genre" => await _songsRepository.GetAllSongsWithAlbumsAndGenresAsync(
+                    x => x.Genre.Name.ToLower().Contains(SearchString), ct),
+                _ => await _songsRepository.GetAllSongsWithAlbumsAndGenresAsync(x => x.Name.ToLower().Contains(SearchString), ct)
+            };
         }
         else
         {
